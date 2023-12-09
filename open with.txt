@@ -1,0 +1,2 @@
+with open("APIKey.txt", 'r') as file:
+    openweathermap_api_key = file.read()
