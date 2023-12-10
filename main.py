@@ -83,34 +83,6 @@ trainer.train(conversation_data)
 
 
 # Route for the home page
-'''
-@app.route('/', methods=['GET', 'POST'])
-
-def home():
-    user_input = None
-    bot_response = None
-
-    if request.method == 'POST':
-        user_input = request.form['user_input']
-
-        # Check for the specific questions about the weather for each location
-        for location in locations:
-            if f"weather for {location}" in user_input.lower():
-                # Get the 5-day forecast for the specified location
-                for data in conversation_data:
-                    if f"{location} Forecast:" in data:
-                        bot_response = data
-                        break
-                else:
-                    bot_response = f"No data found for {location}."
-                break
-        else:
-            # Get the chat bot's response for general conversation
-            bot_response = chatbot.get_response(user_input)
-
-    return render_template('index.html', user_input=user_input, bot_response=bot_response)
-'''
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
     user_input = None
@@ -124,7 +96,7 @@ def home():
             if f"weather for {location}" in user_input.lower():
                 # Get the 5-day forecast for the specified location
                 for data in conversation_data:
-                    if f"The 5-day forecast for {location}: {forecast_string}" in data:
+                    if f"The 5-day forecast for {location}: " in data:
                         bot_response = data
                         break
                 else:
